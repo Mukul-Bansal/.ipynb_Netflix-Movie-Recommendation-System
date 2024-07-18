@@ -1,0 +1,1030 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 130,
+   "id": "82fb308c-8eae-447c-8c55-c2f6543bf587",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['.ipynb_checkpoints',\n",
+       " 'archive.zip',\n",
+       " 'avocado.csv',\n",
+       " 'credits.csv',\n",
+       " 'Minimum Wage Data.csv',\n",
+       " 'minwage.csv',\n",
+       " 'movies.csv',\n",
+       " 'netflixData.csv',\n",
+       " 'state_abbv.csv',\n",
+       " 'Untitled.ipynb',\n",
+       " 'Untitled1.ipynb',\n",
+       " 'Untitled2.ipynb',\n",
+       " 'Untitled3.ipynb',\n",
+       " 'Untitled4.ipynb']"
+      ]
+     },
+     "execution_count": 130,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import os \n",
+    "\n",
+    "\n",
+    "os.listdir()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 131,
+   "id": "91768a21-6bf3-411b-b0a0-16c9b4d5b8af",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Requirement already satisfied: pip in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (24.1.1)"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "ERROR: To modify pip, please run the following command:\n",
+      "C:\\Users\\Mukul Bansal\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m pip install --upgrade pip\n",
+      "\n",
+      "[notice] A new release of pip is available: 24.1.1 -> 24.1.2\n",
+      "[notice] To update, run: python.exe -m pip install --upgrade pip\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "Collecting pip\n",
+      "  Using cached pip-24.1.2-py3-none-any.whl.metadata (3.6 kB)\n",
+      "Using cached pip-24.1.2-py3-none-any.whl (1.8 MB)\n",
+      "Collecting sklearn\n",
+      "  Using cached sklearn-0.0.post12.tar.gz (2.6 kB)\n",
+      "  Installing build dependencies: started\n",
+      "  Installing build dependencies: finished with status 'done'\n",
+      "  Getting requirements to build wheel: started\n",
+      "  Getting requirements to build wheel: finished with status 'error'\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "  error: subprocess-exited-with-error\n",
+      "  \n",
+      "  Getting requirements to build wheel did not run successfully.\n",
+      "  exit code: 1\n",
+      "  \n",
+      "  [15 lines of output]\n",
+      "  The 'sklearn' PyPI package is deprecated, use 'scikit-learn'\n",
+      "  rather than 'sklearn' for pip commands.\n",
+      "  \n",
+      "  Here is how to fix this error in the main use cases:\n",
+      "  - use 'pip install scikit-learn' rather than 'pip install sklearn'\n",
+      "  - replace 'sklearn' by 'scikit-learn' in your pip requirements files\n",
+      "    (requirements.txt, setup.py, setup.cfg, Pipfile, etc ...)\n",
+      "  - if the 'sklearn' package is used by one of your dependencies,\n",
+      "    it would be great if you take some time to track which package uses\n",
+      "    'sklearn' instead of 'scikit-learn' and report it to their issue tracker\n",
+      "  - as a last resort, set the environment variable\n",
+      "    SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True to avoid this error\n",
+      "  \n",
+      "  More information is available at\n",
+      "  https://github.com/scikit-learn/sklearn-pypi-package\n",
+      "  [end of output]\n",
+      "  \n",
+      "  note: This error originates from a subprocess, and is likely not a problem with pip.\n",
+      "error: subprocess-exited-with-error\n",
+      "\n",
+      "Getting requirements to build wheel did not run successfully.\n",
+      "exit code: 1\n",
+      "\n",
+      "See above for output.\n",
+      "\n",
+      "note: This error originates from a subprocess, and is likely not a problem with pip.\n",
+      "\n",
+      "[notice] A new release of pip is available: 24.1.1 -> 24.1.2\n",
+      "[notice] To update, run: python.exe -m pip install --upgrade pip\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip install --upgrade pip\n",
+    "!pip install sklearn"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 132,
+   "id": "d79fb877-38d3-43ff-ad6d-ccd0ca4d53ea",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Requirement already satisfied: scikit-learn in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (1.5.1)\n",
+      "Requirement already satisfied: numpy>=1.19.5 in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from scikit-learn) (2.0.0)\n",
+      "Requirement already satisfied: scipy>=1.6.0 in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from scikit-learn) (1.14.0)\n",
+      "Requirement already satisfied: joblib>=1.2.0 in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from scikit-learn) (1.4.2)\n",
+      "Requirement already satisfied: threadpoolctl>=3.1.0 in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from scikit-learn) (3.5.0)\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "[notice] A new release of pip is available: 24.1.1 -> 24.1.2\n",
+      "[notice] To update, run: python.exe -m pip install --upgrade pip\n"
+     ]
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "import pandas as pd\n",
+    "!pip install scikit-learn\n",
+    "\n",
+    "\n",
+    "from sklearn.feature_extraction import text\n",
+    "from sklearn.metrics.pairwise import cosine_similarity\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 133,
+   "id": "756afbe2-c4fb-4835-aa68-e6149f721208",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Show Id</th>\n",
+       "      <th>Title</th>\n",
+       "      <th>Description</th>\n",
+       "      <th>Director</th>\n",
+       "      <th>Genres</th>\n",
+       "      <th>Cast</th>\n",
+       "      <th>Production Country</th>\n",
+       "      <th>Release Date</th>\n",
+       "      <th>Rating</th>\n",
+       "      <th>Duration</th>\n",
+       "      <th>Imdb Score</th>\n",
+       "      <th>Content Type</th>\n",
+       "      <th>Date Added</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>cc1b6ed9-cf9e-4057-8303-34577fb54477</td>\n",
+       "      <td>(Un)Well</td>\n",
+       "      <td>This docuseries takes a deep dive into the luc...</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Reality TV</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>United States</td>\n",
+       "      <td>2020.0</td>\n",
+       "      <td>TV-MA</td>\n",
+       "      <td>1 Season</td>\n",
+       "      <td>6.6/10</td>\n",
+       "      <td>TV Show</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>e2ef4e91-fb25-42ab-b485-be8e3b23dedb</td>\n",
+       "      <td>#Alive</td>\n",
+       "      <td>As a grisly virus rampages a city, a lone man ...</td>\n",
+       "      <td>Cho Il</td>\n",
+       "      <td>Horror Movies, International Movies, Thrillers</td>\n",
+       "      <td>Yoo Ah-in, Park Shin-hye</td>\n",
+       "      <td>South Korea</td>\n",
+       "      <td>2020.0</td>\n",
+       "      <td>TV-MA</td>\n",
+       "      <td>99 min</td>\n",
+       "      <td>6.2/10</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>September 8, 2020</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>b01b73b7-81f6-47a7-86d8-acb63080d525</td>\n",
+       "      <td>#AnneFrank - Parallel Stories</td>\n",
+       "      <td>Through her diary, Anne Frank's story is retol...</td>\n",
+       "      <td>Sabina Fedeli, Anna Migotto</td>\n",
+       "      <td>Documentaries, International Movies</td>\n",
+       "      <td>Helen Mirren, Gengher Gatti</td>\n",
+       "      <td>Italy</td>\n",
+       "      <td>2019.0</td>\n",
+       "      <td>TV-14</td>\n",
+       "      <td>95 min</td>\n",
+       "      <td>6.4/10</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>July 1, 2020</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>b6611af0-f53c-4a08-9ffa-9716dc57eb9c</td>\n",
+       "      <td>#blackAF</td>\n",
+       "      <td>Kenya Barris and his family navigate relations...</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>TV Comedies</td>\n",
+       "      <td>Kenya Barris, Rashida Jones, Iman Benson, Genn...</td>\n",
+       "      <td>United States</td>\n",
+       "      <td>2020.0</td>\n",
+       "      <td>TV-MA</td>\n",
+       "      <td>1 Season</td>\n",
+       "      <td>6.6/10</td>\n",
+       "      <td>TV Show</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>7f2d4170-bab8-4d75-adc2-197f7124c070</td>\n",
+       "      <td>#cats_the_mewvie</td>\n",
+       "      <td>This pawesome documentary explores how our fel...</td>\n",
+       "      <td>Michael Margolis</td>\n",
+       "      <td>Documentaries, International Movies</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Canada</td>\n",
+       "      <td>2020.0</td>\n",
+       "      <td>TV-14</td>\n",
+       "      <td>90 min</td>\n",
+       "      <td>5.1/10</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>February 5, 2020</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                                Show Id                          Title  \\\n",
+       "0  cc1b6ed9-cf9e-4057-8303-34577fb54477                       (Un)Well   \n",
+       "1  e2ef4e91-fb25-42ab-b485-be8e3b23dedb                         #Alive   \n",
+       "2  b01b73b7-81f6-47a7-86d8-acb63080d525  #AnneFrank - Parallel Stories   \n",
+       "3  b6611af0-f53c-4a08-9ffa-9716dc57eb9c                       #blackAF   \n",
+       "4  7f2d4170-bab8-4d75-adc2-197f7124c070               #cats_the_mewvie   \n",
+       "\n",
+       "                                         Description  \\\n",
+       "0  This docuseries takes a deep dive into the luc...   \n",
+       "1  As a grisly virus rampages a city, a lone man ...   \n",
+       "2  Through her diary, Anne Frank's story is retol...   \n",
+       "3  Kenya Barris and his family navigate relations...   \n",
+       "4  This pawesome documentary explores how our fel...   \n",
+       "\n",
+       "                      Director  \\\n",
+       "0                          NaN   \n",
+       "1                       Cho Il   \n",
+       "2  Sabina Fedeli, Anna Migotto   \n",
+       "3                          NaN   \n",
+       "4             Michael Margolis   \n",
+       "\n",
+       "                                           Genres  \\\n",
+       "0                                      Reality TV   \n",
+       "1  Horror Movies, International Movies, Thrillers   \n",
+       "2             Documentaries, International Movies   \n",
+       "3                                     TV Comedies   \n",
+       "4             Documentaries, International Movies   \n",
+       "\n",
+       "                                                Cast Production Country  \\\n",
+       "0                                                NaN      United States   \n",
+       "1                           Yoo Ah-in, Park Shin-hye        South Korea   \n",
+       "2                        Helen Mirren, Gengher Gatti              Italy   \n",
+       "3  Kenya Barris, Rashida Jones, Iman Benson, Genn...      United States   \n",
+       "4                                                NaN             Canada   \n",
+       "\n",
+       "   Release Date Rating  Duration Imdb Score Content Type         Date Added  \n",
+       "0        2020.0  TV-MA  1 Season     6.6/10      TV Show                NaN  \n",
+       "1        2020.0  TV-MA    99 min     6.2/10        Movie  September 8, 2020  \n",
+       "2        2019.0  TV-14    95 min     6.4/10        Movie       July 1, 2020  \n",
+       "3        2020.0  TV-MA  1 Season     6.6/10      TV Show                NaN  \n",
+       "4        2020.0  TV-14    90 min     5.1/10        Movie   February 5, 2020  "
+      ]
+     },
+     "execution_count": 133,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data=pd.read_csv(\"netflixData.csv\")\n",
+    "data.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 134,
+   "id": "1f6bb6b7-f4a8-4aa9-bf80-160373ea3589",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Show Id                  0\n",
+      "Title                    0\n",
+      "Description              0\n",
+      "Director              2064\n",
+      "Genres                   0\n",
+      "Cast                   530\n",
+      "Production Country     559\n",
+      "Release Date             3\n",
+      "Rating                   4\n",
+      "Duration                 3\n",
+      "Imdb Score             608\n",
+      "Content Type             0\n",
+      "Date Added            1335\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(data.isnull().sum())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 135,
+   "id": "a00532fe-4d34-4a39-bae6-698fe7dd5670",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "data=data[[\"Title\",\"Description\",\"Content Type\",\"Genres\"]]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 136,
+   "id": "47473201-0ede-453f-8ea3-2b3c0e3c0a77",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Title</th>\n",
+       "      <th>Description</th>\n",
+       "      <th>Content Type</th>\n",
+       "      <th>Genres</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>(Un)Well</td>\n",
+       "      <td>This docuseries takes a deep dive into the luc...</td>\n",
+       "      <td>TV Show</td>\n",
+       "      <td>Reality TV</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>#Alive</td>\n",
+       "      <td>As a grisly virus rampages a city, a lone man ...</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>Horror Movies, International Movies, Thrillers</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>#AnneFrank - Parallel Stories</td>\n",
+       "      <td>Through her diary, Anne Frank's story is retol...</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>Documentaries, International Movies</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>#blackAF</td>\n",
+       "      <td>Kenya Barris and his family navigate relations...</td>\n",
+       "      <td>TV Show</td>\n",
+       "      <td>TV Comedies</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>#cats_the_mewvie</td>\n",
+       "      <td>This pawesome documentary explores how our fel...</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>Documentaries, International Movies</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                           Title  \\\n",
+       "0                       (Un)Well   \n",
+       "1                         #Alive   \n",
+       "2  #AnneFrank - Parallel Stories   \n",
+       "3                       #blackAF   \n",
+       "4               #cats_the_mewvie   \n",
+       "\n",
+       "                                         Description Content Type  \\\n",
+       "0  This docuseries takes a deep dive into the luc...      TV Show   \n",
+       "1  As a grisly virus rampages a city, a lone man ...        Movie   \n",
+       "2  Through her diary, Anne Frank's story is retol...        Movie   \n",
+       "3  Kenya Barris and his family navigate relations...      TV Show   \n",
+       "4  This pawesome documentary explores how our fel...        Movie   \n",
+       "\n",
+       "                                           Genres  \n",
+       "0                                      Reality TV  \n",
+       "1  Horror Movies, International Movies, Thrillers  \n",
+       "2             Documentaries, International Movies  \n",
+       "3                                     TV Comedies  \n",
+       "4             Documentaries, International Movies  "
+      ]
+     },
+     "execution_count": 136,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 137,
+   "id": "706c6043-7811-4936-bd3a-bf112e4d3c9d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Title           0\n",
+      "Description     0\n",
+      "Content Type    0\n",
+      "Genres          0\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(data.isnull().sum())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 138,
+   "id": "9dbc4f49-1a66-4360-9d22-19fd638a4a89",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "data=data.dropna()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 139,
+   "id": "549db261-83af-4504-88d9-41358c55cee2",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Title</th>\n",
+       "      <th>Description</th>\n",
+       "      <th>Content Type</th>\n",
+       "      <th>Genres</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>(Un)Well</td>\n",
+       "      <td>This docuseries takes a deep dive into the luc...</td>\n",
+       "      <td>TV Show</td>\n",
+       "      <td>Reality TV</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>#Alive</td>\n",
+       "      <td>As a grisly virus rampages a city, a lone man ...</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>Horror Movies, International Movies, Thrillers</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>#AnneFrank - Parallel Stories</td>\n",
+       "      <td>Through her diary, Anne Frank's story is retol...</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>Documentaries, International Movies</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>#blackAF</td>\n",
+       "      <td>Kenya Barris and his family navigate relations...</td>\n",
+       "      <td>TV Show</td>\n",
+       "      <td>TV Comedies</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>#cats_the_mewvie</td>\n",
+       "      <td>This pawesome documentary explores how our fel...</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>Documentaries, International Movies</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5962</th>\n",
+       "      <td>الف مبروك</td>\n",
+       "      <td>On his wedding day, an arrogant, greedy accoun...</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>Comedies, Dramas, International Movies</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5963</th>\n",
+       "      <td>دفعة القاهرة</td>\n",
+       "      <td>A group of women leaves Kuwait to attend unive...</td>\n",
+       "      <td>TV Show</td>\n",
+       "      <td>International TV Shows, TV Dramas</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5964</th>\n",
+       "      <td>海的儿子</td>\n",
+       "      <td>Two brothers start a new life in Singapore, wh...</td>\n",
+       "      <td>TV Show</td>\n",
+       "      <td>International TV Shows, TV Dramas</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5965</th>\n",
+       "      <td>반드시 잡는다</td>\n",
+       "      <td>After people in his town start turning up dead...</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>Dramas, International Movies, Thrillers</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5966</th>\n",
+       "      <td>최강전사 미니특공대 : 영웅의 탄생</td>\n",
+       "      <td>Miniforce, a special task force of elite range...</td>\n",
+       "      <td>Movie</td>\n",
+       "      <td>Children &amp; Family Movies</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>5967 rows × 4 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                              Title  \\\n",
+       "0                          (Un)Well   \n",
+       "1                            #Alive   \n",
+       "2     #AnneFrank - Parallel Stories   \n",
+       "3                          #blackAF   \n",
+       "4                  #cats_the_mewvie   \n",
+       "...                             ...   \n",
+       "5962                      الف مبروك   \n",
+       "5963                   دفعة القاهرة   \n",
+       "5964                           海的儿子   \n",
+       "5965                        반드시 잡는다   \n",
+       "5966            최강전사 미니특공대 : 영웅의 탄생   \n",
+       "\n",
+       "                                            Description Content Type  \\\n",
+       "0     This docuseries takes a deep dive into the luc...      TV Show   \n",
+       "1     As a grisly virus rampages a city, a lone man ...        Movie   \n",
+       "2     Through her diary, Anne Frank's story is retol...        Movie   \n",
+       "3     Kenya Barris and his family navigate relations...      TV Show   \n",
+       "4     This pawesome documentary explores how our fel...        Movie   \n",
+       "...                                                 ...          ...   \n",
+       "5962  On his wedding day, an arrogant, greedy accoun...        Movie   \n",
+       "5963  A group of women leaves Kuwait to attend unive...      TV Show   \n",
+       "5964  Two brothers start a new life in Singapore, wh...      TV Show   \n",
+       "5965  After people in his town start turning up dead...        Movie   \n",
+       "5966  Miniforce, a special task force of elite range...        Movie   \n",
+       "\n",
+       "                                              Genres  \n",
+       "0                                         Reality TV  \n",
+       "1     Horror Movies, International Movies, Thrillers  \n",
+       "2                Documentaries, International Movies  \n",
+       "3                                        TV Comedies  \n",
+       "4                Documentaries, International Movies  \n",
+       "...                                              ...  \n",
+       "5962          Comedies, Dramas, International Movies  \n",
+       "5963               International TV Shows, TV Dramas  \n",
+       "5964               International TV Shows, TV Dramas  \n",
+       "5965         Dramas, International Movies, Thrillers  \n",
+       "5966                        Children & Family Movies  \n",
+       "\n",
+       "[5967 rows x 4 columns]"
+      ]
+     },
+     "execution_count": 139,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 140,
+   "id": "9e241881-957b-43f4-a480-e21c2b9e57b6",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Requirement already satisfied: nltk in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (3.8.1)\n",
+      "Requirement already satisfied: click in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from nltk) (8.1.7)\n",
+      "Requirement already satisfied: joblib in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from nltk) (1.4.2)\n",
+      "Requirement already satisfied: regex>=2021.8.3 in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from nltk) (2024.5.15)\n",
+      "Requirement already satisfied: tqdm in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from nltk) (4.66.4)\n",
+      "Requirement already satisfied: colorama in c:\\users\\mukul bansal\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from click->nltk) (0.4.6)\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "[notice] A new release of pip is available: 24.1.1 -> 24.1.2\n",
+      "[notice] To update, run: python.exe -m pip install --upgrade pip\n",
+      "[nltk_data] Downloading package stopwords to C:\\Users\\Mukul\n",
+      "[nltk_data]     Bansal\\AppData\\Roaming\\nltk_data...\n",
+      "[nltk_data]   Package stopwords is already up-to-date!\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip install nltk\n",
+    "import nltk\n",
+    "import re\n",
+    "nltk.download('stopwords')\n",
+    "stemmer =nltk.SnowballStemmer(\"english\")\n",
+    "from nltk.corpus import stopwords\n",
+    "import string\n",
+    "stopword = set(stopwords.words('english'))\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 141,
+   "id": "db00ec5a-367e-4517-bc9b-23f9de991ae1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def clean(text):\n",
+    "    text=str(text).lower()\n",
+    "    text=re.sub('\\[.*?\\]','',text)\n",
+    "    text=re.sub('https?://\\S+|www\\.\\S+','',text)\n",
+    "    text=re.sub('<.*?>+','',text)\n",
+    "    text=re.sub('[%s]' % re.escape(string.punctuation),'',text)\n",
+    "    text=re.sub('\\n','',text)\n",
+    "    text=re.sub('\\w*\\d\\w*','',text)\n",
+    "    \n",
+    "    text=[word for word in text.split(' ') if word not in stopword]\n",
+    "    text=\" \".join(text)\n",
+    "    return text\n",
+    "    \n",
+    "    \n",
+    "\n",
+    "\n",
+    "data[\"Title\"]=data[\"Title\"].apply(clean)\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n",
+    "    \n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 142,
+   "id": "d0ab5847-b034-484f-854d-39da1fd63bed",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "unwell\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(clean(\"(Un)Well\"))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 183,
+   "id": "9981c4ec-d4ea-41dd-924c-4b738567d367",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "3545                  opening night\n",
+       "957                         chelsea\n",
+       "1085                      connected\n",
+       "3502                   om shanti om\n",
+       "3580                    outer banks\n",
+       "1527                evening shadows\n",
+       "3368    nate bargatze tennessee kid\n",
+       "2799                   love aaj kal\n",
+       "4826                         forest\n",
+       "719             blind intersections\n",
+       "Name: Title, dtype: object"
+      ]
+     },
+     "execution_count": 183,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.Title.sample(10)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7528982b-ed95-46f3-ace8-d696c94b5b8f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 146,
+   "id": "fb0618a1-e424-4178-95b8-e1ba7f6aa485",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "20              Crime TV Shows, TV Dramas, TV Mysteries\n",
+      "21                           Crime TV Shows, Docuseries\n",
+      "22                                        Documentaries\n",
+      "23                                        Documentaries\n",
+      "24                 Comedies, Dramas, Independent Movies\n",
+      "                            ...                        \n",
+      "95    Children & Family Movies, Dramas, Romantic Movies\n",
+      "96    Children & Family Movies, Dramas, Romantic Movies\n",
+      "97                                               Movies\n",
+      "98    Children & Family Movies, Comedies, Music & Mu...\n",
+      "99                  Horror Movies, International Movies\n",
+      "Name: Genres, Length: 80, dtype: object\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(data.Genres[20:100])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 147,
+   "id": "9acb343b-8ab9-486e-869a-824b18e7ecff",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import sklearn\n",
+    "from sklearn.feature_extraction.text import TfidfVectorizer\n",
+    "from sklearn.metrics.pairwise import cosine_similarity"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 148,
+   "id": "4d359630-ce09-4f5a-8e4e-d9cac245ef2a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "feature = data['Genres'].tolist()\n",
+    "tfidf=TfidfVectorizer(stop_words=\"english\")\n",
+    "\n",
+    "tfidf_matrix=tfidf.fit_transform(feature)\n",
+    "\n",
+    "similarity = cosine_similarity(tfidf_matrix)\n",
+    "indices = pd.Series(data.index,\n",
+    "                    index=data['Title']).drop_duplicates()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 149,
+   "id": "3396024e-4c78-4862-a20d-fc1cdf3fa418",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def netflix_recommendation(title,similarity=similarity):\n",
+    "    index=indices[title]\n",
+    "    similarity_scores=list(enumerate(similarity[index]))\n",
+    "    similarity_scores=sorted(similarity_scores,key=lambda x: x[1], reverse=True)\n",
+    "    similarity_scores=similarity_scores[0:10]\n",
+    "    movieindices = [i[0]for i in similarity_scores]\n",
+    "    return data['Title'].iloc[movieindices]\n",
+    "     "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 150,
+   "id": "aea53424-e1fd-4a0c-b28d-fdb7323804b5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "                            Title  \\\n",
+      "0                          unwell   \n",
+      "1                           alive   \n",
+      "2     annefrank  parallel stories   \n",
+      "3                         blackaf   \n",
+      "4                   catsthemewvie   \n",
+      "...                           ...   \n",
+      "5962                    الف مبروك   \n",
+      "5963                 دفعة القاهرة   \n",
+      "5964                         海的儿子   \n",
+      "5965                      반드시 잡는다   \n",
+      "5966           최강전사 미니특공대  영웅의 탄생   \n",
+      "\n",
+      "                                            Description Content Type  \\\n",
+      "0     This docuseries takes a deep dive into the luc...      TV Show   \n",
+      "1     As a grisly virus rampages a city, a lone man ...        Movie   \n",
+      "2     Through her diary, Anne Frank's story is retol...        Movie   \n",
+      "3     Kenya Barris and his family navigate relations...      TV Show   \n",
+      "4     This pawesome documentary explores how our fel...        Movie   \n",
+      "...                                                 ...          ...   \n",
+      "5962  On his wedding day, an arrogant, greedy accoun...        Movie   \n",
+      "5963  A group of women leaves Kuwait to attend unive...      TV Show   \n",
+      "5964  Two brothers start a new life in Singapore, wh...      TV Show   \n",
+      "5965  After people in his town start turning up dead...        Movie   \n",
+      "5966  Miniforce, a special task force of elite range...        Movie   \n",
+      "\n",
+      "                                              Genres  \n",
+      "0                                         Reality TV  \n",
+      "1     Horror Movies, International Movies, Thrillers  \n",
+      "2                Documentaries, International Movies  \n",
+      "3                                        TV Comedies  \n",
+      "4                Documentaries, International Movies  \n",
+      "...                                              ...  \n",
+      "5962          Comedies, Dramas, International Movies  \n",
+      "5963               International TV Shows, TV Dramas  \n",
+      "5964               International TV Shows, TV Dramas  \n",
+      "5965         Dramas, International Movies, Thrillers  \n",
+      "5966                        Children & Family Movies  \n",
+      "\n",
+      "[5967 rows x 4 columns]\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(data)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 185,
+   "id": "31dfe349-6423-4823-8a30-2033ee9c688d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "5       friendbutmarried\n",
+      "6      friendbutmarried \n",
+      "33           weeks lagos\n",
+      "50                  days\n",
+      "88        beautiful life\n",
+      "127           love story\n",
+      "143        second chance\n",
+      "267            ali  alia\n",
+      "284                 love\n",
+      "306        alonetogether\n",
+      "Name: Title, dtype: object\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(netflix_recommendation(\"love aaj kal\"))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c6312934-0b81-4686-ae02-58f553647b0f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "836a1eeb-e5c3-464d-9bb8-8a51b62dfba6",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "73cbac0a-7ec8-4479-a13b-d62c2e4ade0a",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
